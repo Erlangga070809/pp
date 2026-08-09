@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kasir - Ladang Usaha</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="main-content" style="margin-left: 0;">
+    <header class="main-header">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <img src="/assets/logo.png" alt="Ladang Usaha" style="height: 2rem;">
+        <h2 style="font-size: 1.25rem; font-weight: 600;">Point of Sale</h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span style="font-size: 0.875rem; color: var(--muted);" id="cashierName"></span>
+        <a href="/dashboard.html" class="btn btn-outline btn-sm">Dashboard</a>
+        <a href="#" class="btn btn-outline btn-sm logout-btn" style="color: var(--danger);">Keluar</a>
+      </div>
+    </header>
+    
+    <div class="pos-container" style="height: calc(100vh - 4rem);">
+      <div class="pos-products" style="padding: 1.5rem;">
+        <div class="pos-search">
+          <input type="text" id="productSearch" class="input" placeholder="Cari produk...">
+        </div>
+        <div class="pos-categories" id="categoryList"></div>
+        <div class="pos-grid" id="productGrid"></div>
+      </div>
+      
+      <div class="pos-cart">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3>Keranjang</h3>
+          <button class="btn btn-sm btn-outline" id="clearCart" style="color: var(--danger);">Kosongkan</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+          <div class="empty-state"><p>Keranjang kosong</p></div>
+        </div>
+        <div class="cart-summary">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span style="color: var(--muted);">Subtotal</span>
+            <span style="font-weight: 600;" id="cartSubtotal">Rp0</span>
+          </div>
+          <div class="cart-total" id="cartTotal">Rp0</div>
+        </div>
+        <div class="payment-section">
+          <div class="form-group">
+            <label class="label">Metode Pembayaran</label>
+            <select id="paymentMethod" class="select">
+              <option value="cash">Tunai</option>
+              <option value="debit">Debit</option>
+              <option value="credit">Kredit</option>
+              <option value="qris">QRIS</option>
+              <option value="transfer">Transfer</option>
+            </select>
+          </div>
+          <div class="payment-input">
+            <label class="label">Jumlah Pembayaran</label>
+            <input type="number" id="paymentAmount" class="input" placeholder="0" min="0">
+          </div>
+          <div class="change-display" id="changeAmount">Rp0</div>
+          <button class="btn btn-primary" id="processPayment" style="width: 100%;">Proses Pembayaran</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/kasir.js"></script>
+  <script>
+    if (App.user) {
+      document.getElementById('cashierName').textContent = App.user.name;
+    }
+  </script>
+</body>
+</html>
